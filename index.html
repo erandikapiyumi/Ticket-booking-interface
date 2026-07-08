@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Ticket Booking</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body style="background-color: #f0f2f5; margin: 0;">
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function App() {
+            const TICKET_PRICE = 1500; 
+            const [selectedSeats, setSelectedSeats] = React.useState(0);
+
+            const handleSeatClick = () => {
+                setSelectedSeats(selectedSeats + 1);
+            };
+
+            const handleReset = () => {
+                setSelectedSeats(0);
+            };
+
+            return (
+                <div style={{ textAlign: 'center', padding: '40px', fontFamily: 'Arial', maxWidth: '500px', margin: '50px auto', backgroundColor: 'white', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
+                    <h2 style={{ color: '#1a237e' }}>🏏 Cricket Stadium Booking</h2>
+                    <p style={{ color: '#555' }}>Select your seats below:</p>
+
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', margin: '30px 0' }}>
+                        {[1, 2, 3, 4].map((seatNo) => (
+                            <button 
+                                key={seatNo}
+                                style={{ padding: '15px 20px', backgroundColor: '#4CAF50', color: 'white', cursor: 'pointer', border: 'none', borderRadius: '5px', fontSize: '16px', fontWeight: 'bold' }}
+                                onClick={handleSeatClick}
+                            >
+                                Seat {seatNo}
+                            </button>
+                        ))}
+                    </div>
+
+                    <button onClick={handleReset} style={{ backgroundColor: '#f44336', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '3px', cursor: 'pointer', marginBottom: '20px' }}>Reset</button>
+
+                    <hr style={{ border: '0', height: '1px', backgroundColor: '#ddd' }} />
+
+                    <h3>Booking Summary</h3>
+                    <p>Total Seats Selected: <span style={{ fontSize: '18px', color: '#1a237e', fontWeight: 'bold' }}>{selectedSeats}</span></p>
+                    <p>Total Price: <span style={{ fontSize: '20px', color: '#4CAF50', fontWeight: 'bold' }}>LKR {selectedSeats * TICKET_PRICE}</span></p>
+
+                    <button style={{ padding: '12px 30px', backgroundColor: '#008CBA', color: 'white', border: 'none', borderRadius: '5px', fontSize: '16px', fontWeight: 'bold', cursor: 'pointer', width: '100%', marginTop: '10px' }}>
+                        Book Now
+                    </button>
+                </div>
+            );
+        }
+
+        // React ඇප් එක HTML එකට සම්බන්ධ කිරීම
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
